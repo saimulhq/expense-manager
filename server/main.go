@@ -22,7 +22,7 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-// global vriable for db collection
+// global variable for db collection
 var collection *mongo.Collection
 
 // set server of type ExpenseService
@@ -120,7 +120,7 @@ func (*server) GetExpense(ctx context.Context, req *expensepb.GetExpenseRequest)
 		return nil, status.Errorf(codes.NotFound, fmt.Sprintf("Cannot find expense with the specified ID: %v", err))
 	}
 
-	// log when fetched an expense with id
+	// log when fetch an expense with id
 	log.Println("Fetched an expense with id: " + data.Id.Hex())
 
 	// return response for getExpense if everything's okay
@@ -173,6 +173,9 @@ func (*server) UpdateExpense(ctx context.Context, req *expensepb.UpdateExpenseRe
 		return nil, status.Errorf(codes.Internal, fmt.Sprintf("Cannot update expense in database: %v", updateErr))
 	}
 
+	// log when update an expense with id
+	log.Println("Updated an expense with id: " + oid.Hex())
+
 	// return response for updateExpense if everything's okay
 	return &expensepb.UpdateExpenseResponse{
 		Id: data.Id.Hex(),
@@ -211,6 +214,9 @@ func (*server) DeleteExpense(ctx context.Context, req *expensepb.DeleteExpenseRe
 	if res.DeletedCount == 0 {
 		return nil, status.Errorf(codes.NotFound, fmt.Sprintf("Cannot find expense with the specified ID: %v", err))
 	}
+
+	// log when delete an expense with id
+	log.Println("Deleted an expense with id: " + oid.Hex())
 
 	// return id of the data deleted in response
 	return &expensepb.DeleteExpenseResponse{
@@ -255,6 +261,9 @@ func (*server) GetAllExpense(ctx context.Context, req *expensepb.GetAllExpenseRe
 	if err := cur.Err(); err != nil {
 		return nil, status.Errorf(codes.Internal, fmt.Sprintf("Unknown internal error: %v", err))
 	}
+
+	// log when get all expenses
+	log.Println("Fetched all expenses")
 
 	// return list of all expenses in response
 	return &expensepb.GetAllExpenseReponse{

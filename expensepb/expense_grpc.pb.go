@@ -18,10 +18,15 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ExpenseServiceClient interface {
+	// create a new expnese
 	CreateExpense(ctx context.Context, in *CreateExpenseRequest, opts ...grpc.CallOption) (*CreateExpenseResponse, error)
+	// get an expense by id
 	GetExpense(ctx context.Context, in *GetExpenseRequest, opts ...grpc.CallOption) (*GetExpenseResponse, error)
+	// update a new expense
 	UpdateExpense(ctx context.Context, in *UpdateExpenseRequest, opts ...grpc.CallOption) (*UpdateExpenseResponse, error)
+	// delete an expense
 	DeleteExpense(ctx context.Context, in *DeleteExpenseRequest, opts ...grpc.CallOption) (*DeleteExpenseResponse, error)
+	// get all the expenses
 	GetAllExpense(ctx context.Context, in *GetAllExpenseRequest, opts ...grpc.CallOption) (*GetAllExpenseReponse, error)
 }
 
@@ -82,10 +87,15 @@ func (c *expenseServiceClient) GetAllExpense(ctx context.Context, in *GetAllExpe
 // All implementations must embed UnimplementedExpenseServiceServer
 // for forward compatibility
 type ExpenseServiceServer interface {
+	// create a new expnese
 	CreateExpense(context.Context, *CreateExpenseRequest) (*CreateExpenseResponse, error)
+	// get an expense by id
 	GetExpense(context.Context, *GetExpenseRequest) (*GetExpenseResponse, error)
+	// update a new expense
 	UpdateExpense(context.Context, *UpdateExpenseRequest) (*UpdateExpenseResponse, error)
+	// delete an expense
 	DeleteExpense(context.Context, *DeleteExpenseRequest) (*DeleteExpenseResponse, error)
+	// get all the expenses
 	GetAllExpense(context.Context, *GetAllExpenseRequest) (*GetAllExpenseReponse, error)
 	mustEmbedUnimplementedExpenseServiceServer()
 }

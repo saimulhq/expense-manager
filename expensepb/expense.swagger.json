@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "expensepb/expense.proto",
-    "version": "version not set"
+    "version": "1.0"
   },
   "tags": [
     {
@@ -18,6 +18,7 @@
   "paths": {
     "/v1/expenses": {
       "get": {
+        "summary": "get all the expenses",
         "operationId": "ExpenseService_GetAllExpense",
         "responses": {
           "200": {
@@ -38,6 +39,7 @@
         ]
       },
       "post": {
+        "summary": "create a new expnese",
         "operationId": "ExpenseService_CreateExpense",
         "responses": {
           "200": {
@@ -70,6 +72,7 @@
     },
     "/v1/expenses/{id}": {
       "get": {
+        "summary": "get an expense by id",
         "operationId": "ExpenseService_GetExpense",
         "responses": {
           "200": {
@@ -98,6 +101,7 @@
         ]
       },
       "delete": {
+        "summary": "delete an expense",
         "operationId": "ExpenseService_DeleteExpense",
         "responses": {
           "200": {
@@ -126,6 +130,7 @@
         ]
       },
       "patch": {
+        "summary": "update a new expense",
         "operationId": "ExpenseService_UpdateExpense",
         "responses": {
           "200": {
@@ -170,7 +175,8 @@
         "expense": {
           "$ref": "#/definitions/expensepbExpense"
         }
-      }
+      },
+      "title": "message createExpense request"
     },
     "expensepbCreateExpenseResponse": {
       "type": "object",
@@ -181,7 +187,8 @@
         "expense": {
           "$ref": "#/definitions/expensepbExpense"
         }
-      }
+      },
+      "title": "message createExpense response"
     },
     "expensepbDeleteExpenseResponse": {
       "type": "object",
@@ -189,7 +196,8 @@
         "id": {
           "type": "string"
         }
-      }
+      },
+      "title": "message deleteExpense response"
     },
     "expensepbExpense": {
       "type": "object",
@@ -211,7 +219,8 @@
         "date": {
           "type": "string"
         }
-      }
+      },
+      "title": "message expense without id"
     },
     "expensepbExpenseWithId": {
       "type": "object",
@@ -236,7 +245,8 @@
         "date": {
           "type": "string"
         }
-      }
+      },
+      "title": "message expense with id"
     },
     "expensepbGetAllExpenseReponse": {
       "type": "object",
@@ -247,7 +257,8 @@
             "$ref": "#/definitions/expensepbExpenseWithId"
           }
         }
-      }
+      },
+      "title": "message getAllExpense response with repeated ExpenseWithId"
     },
     "expensepbGetExpenseResponse": {
       "type": "object",
@@ -258,7 +269,8 @@
         "expense": {
           "$ref": "#/definitions/expensepbExpense"
         }
-      }
+      },
+      "title": "message getExpense response"
     },
     "expensepbUpdateExpenseResponse": {
       "type": "object",
@@ -269,7 +281,8 @@
         "expense": {
           "$ref": "#/definitions/expensepbExpense"
         }
-      }
+      },
+      "title": "message updateExpense response"
     },
     "protobufAny": {
       "type": "object",

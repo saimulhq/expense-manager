@@ -21,6 +21,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// message expense without id
 type Expense struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -100,6 +101,7 @@ func (x *Expense) GetDate() string {
 	return ""
 }
 
+// message expense with id
 type ExpenseWithId struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -187,6 +189,7 @@ func (x *ExpenseWithId) GetDate() string {
 	return ""
 }
 
+// message createExpense request
 type CreateExpenseRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -234,6 +237,7 @@ func (x *CreateExpenseRequest) GetExpense() *Expense {
 	return nil
 }
 
+// message createExpense response
 type CreateExpenseResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -289,6 +293,7 @@ func (x *CreateExpenseResponse) GetExpense() *Expense {
 	return nil
 }
 
+// message getExpense request
 type GetExpenseRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -336,6 +341,7 @@ func (x *GetExpenseRequest) GetId() string {
 	return ""
 }
 
+// message getExpense response
 type GetExpenseResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -391,6 +397,7 @@ func (x *GetExpenseResponse) GetExpense() *Expense {
 	return nil
 }
 
+// message updateExpense request
 type UpdateExpenseRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -446,6 +453,7 @@ func (x *UpdateExpenseRequest) GetExpense() *Expense {
 	return nil
 }
 
+// message updateExpense response
 type UpdateExpenseResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -501,6 +509,7 @@ func (x *UpdateExpenseResponse) GetExpense() *Expense {
 	return nil
 }
 
+// message deleteExpense request
 type DeleteExpenseRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -548,6 +557,7 @@ func (x *DeleteExpenseRequest) GetId() string {
 	return ""
 }
 
+// message deleteExpense response
 type DeleteExpenseResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -595,6 +605,7 @@ func (x *DeleteExpenseResponse) GetId() string {
 	return ""
 }
 
+// empty message getAllExpense request
 type GetAllExpenseRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -633,6 +644,7 @@ func (*GetAllExpenseRequest) Descriptor() ([]byte, []int) {
 	return file_expensepb_expense_proto_rawDescGZIP(), []int{10}
 }
 
+// message getAllExpense response with repeated ExpenseWithId
 type GetAllExpenseReponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
