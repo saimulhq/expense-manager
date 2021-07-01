@@ -273,7 +273,7 @@ func (*server) GetAllExpense(ctx context.Context, req *expensepb.GetAllExpenseRe
 // main function
 func main() {
 	// load configurations
-	config, err := util.LoadConfig("/expense-manager/")
+	config, err := util.LoadConfig("./")
 	if err != nil {
 		log.Fatalln("Cannot load config: ", err)
 	}

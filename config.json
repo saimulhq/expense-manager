@@ -1,5 +1,5 @@
 {
-    "dbUrl": "mongodb+srv://saimulhq:iit12345@cluster0.w2ytq.mongodb.net/expense-manager?retryWrites=true&w=majority",
+    "dbUrl": "mongodb://localhost:27017",
     "dbName": "expense-manager",
     "dbCollection": "expense",
     "grpcHost": "localhost",
