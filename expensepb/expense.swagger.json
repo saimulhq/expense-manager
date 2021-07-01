@@ -1,0 +1,305 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "expensepb/expense.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "ExpenseService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/expenses": {
+      "get": {
+        "operationId": "ExpenseService_GetAllExpense",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/expensepbGetAllExpenseReponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ExpenseService"
+        ]
+      },
+      "post": {
+        "operationId": "ExpenseService_CreateExpense",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/expensepbCreateExpenseResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/expensepbCreateExpenseRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ExpenseService"
+        ]
+      }
+    },
+    "/v1/expenses/{id}": {
+      "get": {
+        "operationId": "ExpenseService_GetExpense",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/expensepbGetExpenseResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ExpenseService"
+        ]
+      },
+      "delete": {
+        "operationId": "ExpenseService_DeleteExpense",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/expensepbDeleteExpenseResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ExpenseService"
+        ]
+      },
+      "patch": {
+        "operationId": "ExpenseService_UpdateExpense",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/expensepbUpdateExpenseResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/expensepbExpense"
+            }
+          }
+        ],
+        "tags": [
+          "ExpenseService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "expensepbCreateExpenseRequest": {
+      "type": "object",
+      "properties": {
+        "expense": {
+          "$ref": "#/definitions/expensepbExpense"
+        }
+      }
+    },
+    "expensepbCreateExpenseResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "expense": {
+          "$ref": "#/definitions/expensepbExpense"
+        }
+      }
+    },
+    "expensepbDeleteExpenseResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "expensepbExpense": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "price": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "date": {
+          "type": "string"
+        }
+      }
+    },
+    "expensepbExpenseWithId": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "price": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "date": {
+          "type": "string"
+        }
+      }
+    },
+    "expensepbGetAllExpenseReponse": {
+      "type": "object",
+      "properties": {
+        "expense": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/expensepbExpenseWithId"
+          }
+        }
+      }
+    },
+    "expensepbGetExpenseResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "expense": {
+          "$ref": "#/definitions/expensepbExpense"
+        }
+      }
+    },
+    "expensepbUpdateExpenseResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "expense": {
+          "$ref": "#/definitions/expensepbExpense"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "typeUrl": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

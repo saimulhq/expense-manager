@@ -1,0 +1,119 @@
+syntax = "proto3";
+
+package expensepb;
+option go_package = "/expensepb";
+
+// importing annotations proto
+import "google/api/annotations.proto";
+
+// message expense without id
+message Expense {
+    string title = 1;
+    string description = 2;
+    int32 amount = 3;
+    int32 price = 4;
+    string date = 5;
+}
+
+// message expense with id
+message ExpenseWithId {
+    string id = 1;
+    string title = 2;
+    string description = 3;
+    int32 amount = 4;
+    int32 price = 5;
+    string date = 6;
+}
+
+// message createExpense request
+message CreateExpenseRequest {
+    Expense expense = 1;
+}
+
+// message createExpense response
+message CreateExpenseResponse {
+    string id = 1;
+    Expense expense = 2;
+}
+
+// message getExpense request
+message GetExpenseRequest {
+    string id = 1;
+}
+
+// message getExpense response
+message GetExpenseResponse {
+    string id = 1;
+    Expense expense = 2;
+}
+
+// message updateExpense request
+message UpdateExpenseRequest {
+    string id = 1;
+    Expense expense = 2;
+}
+
+// message updateExpense response
+message UpdateExpenseResponse {
+    string id = 1;
+    Expense expense = 2;
+}
+
+// message deleteExpense request
+message DeleteExpenseRequest {
+    string id = 1;
+}
+
+// message deleteExpense response
+message DeleteExpenseResponse {
+    string id = 1;
+}
+
+// empty message getAllExpense request
+message GetAllExpenseRequest {
+}
+
+// message getAllExpense response with repeated ExpenseWithId
+message GetAllExpenseReponse {
+    repeated ExpenseWithId expense = 2;
+}
+
+// expense service definition for all endpoints
+service ExpenseService {
+    // create a new expnese
+    rpc CreateExpense(CreateExpenseRequest) returns (CreateExpenseResponse) {
+        option (google.api.http) = {
+            post: "/v1/expenses"
+            body: "*"
+        };
+    }
+
+    // get an expense by id
+    rpc GetExpense(GetExpenseRequest) returns (GetExpenseResponse) {
+        option (google.api.http) = {
+            get: "/v1/expenses/{id}"
+        };
+    }
+
+    // update a new expense
+    rpc UpdateExpense(UpdateExpenseRequest) returns (UpdateExpenseResponse) {
+        option (google.api.http) = {
+            patch: "/v1/expenses/{id}"
+            body: "expense"
+        };
+    }
+
+    // delete an expense
+    rpc DeleteExpense(DeleteExpenseRequest) returns (DeleteExpenseResponse) {
+        option (google.api.http) = {
+            delete: "/v1/expenses/{id}"
+        };
+    }
+
+    // get all the expenses
+    rpc GetAllExpense(GetAllExpenseRequest) returns (GetAllExpenseReponse){
+        option (google.api.http) = {
+            get: "/v1/expenses"
+        };
+    }
+}
